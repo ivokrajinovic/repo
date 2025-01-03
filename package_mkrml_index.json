@@ -1,0 +1,31 @@
+{
+  "packages": [
+    {
+      "name": "Micro-Link",
+      "maintainer": "Ivo Krajinovic",
+      "email": "ivo.krajinovic@microlink.hr",
+      "websiteURL": "https://www.microlink.hr",
+      "help": {
+        "online": "https://www.microlink.hr"
+      },
+      "platforms": [
+        {
+          "name": "Micro-Link custom board",
+          "architecture": "samd",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "url": "https://raw.githubusercontent.com/ivokrajinovic/repo/branch/hardware/microlink/mkrml-1.0.0.zip",
+          "archiveFileName": "mkrml-1.0.0.zip",
+          "checksum": "SHA-256:c60c3a49c3d269c62ecf9babaabb7e2afaf7015fd3fcda18c2b31c11cb26b4dd",
+          "size": "2633063",
+          "boards": [
+            {
+              "name": "MKRML"
+            }
+          ]
+        }
+      ],
+      "tools": []
+    }
+  ]
+}
