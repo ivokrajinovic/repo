@@ -11,8 +11,8 @@ compiler.objcopy.cmd=arm-none-eabi-objcopy
 compiler.elf2bin.cmd=arm-none-eabi-objcopy
 
 # Compile flags
-compiler.c.flags=-c -g -Os -w -ffunction-sections -fdata-sections -nostdlib
-compiler.cpp.flags=-c -g -Os -fno-exceptions -ffunction-sections -fdata-sections -nostdlib
+compiler.c.flags=-c -g -Os -w -ffunction-sections -fdata-sections -nostdlib -I{build.core.path}/api -I{build.core.path}/samd -I{build.variant.path} -I{build.system.path}
+compiler.cpp.flags=-c -g -Os -fno-exceptions -ffunction-sections -fdata-sections -nostdlib -I{build.core.path}/api -I{build.core.path}/samd -I{build.variant.path} -I{build.system.path}
 compiler.S.flags=-c -g -x assembler-with-cpp -MMD
 compiler.ar.flags=rcs
 compiler.objcopy.eep.flags=-O binary -R .eeprom
@@ -38,3 +38,10 @@ build.mcu=cortex-m0plus
 build.f_cpu=48000000L
 build.core=custom
 build.extra_flags=
+
+# Core and variant paths
+build.core.path={runtime.platform.path}/cores/arduino
+build.variant.path={runtime.platform.path}/variants/{build.variant}
+
+# Board specific options
+build.variant=mkrml

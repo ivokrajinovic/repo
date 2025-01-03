@@ -16,8 +16,8 @@
           "category": "Contributed",
           "url": "https://github.com/ivokrajinovic/repo/raw/68d3eb523f8ece608bc7259739b17e42ba5dd048/hardware/mkrml-1.0.0.zip",
           "archiveFileName": "mkrml-1.0.0.zip",
-          "checksum": "SHA-256:7331e1e59ec350fb1de6c064455949dd34f0b2afcb9ae01c7b35da9eb0e58025",
-          "size": "1684231",
+          "checksum": "SHA-256:963a6c2065de8cdbad6ecbcd5ea624385c163488bafe7400a14bfeb57a316ecd",
+          "size": "1598141",
           "boards": [
             {
               "name": "MKRML"
