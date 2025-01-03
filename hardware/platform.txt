@@ -1,0 +1,47 @@
+# Platform configuration
+name=MKRML
+version=1.0.0
+
+# Compiler path
+compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
+compiler.c.cmd=arm-none-eabi-gcc
+compiler.cpp.cmd=arm-none-eabi-g++
+compiler.ar.cmd=arm-none-eabi-ar
+compiler.objcopy.cmd=arm-none-eabi-objcopy
+compiler.elf2bin.cmd=arm-none-eabi-objcopy
+
+# Compile flags
+compiler.c.flags=-c -g -Os -w -ffunction-sections -fdata-sections -nostdlib -I{build.core.path}/api -I{build.core.path}/samd -I{build.variant.path} -I{build.system.path}
+compiler.cpp.flags=-c -g -Os -fno-exceptions -ffunction-sections -fdata-sections -nostdlib -I{build.core.path}/api -I{build.core.path}/samd -I{build.variant.path} -I{build.system.path}
+compiler.S.flags=-c -g -x assembler-with-cpp -MMD
+compiler.ar.flags=rcs
+compiler.objcopy.eep.flags=-O binary -R .eeprom
+compiler.elf2bin.flags=-O binary
+
+# Build patterns
+recipe.c.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.c.flags} -mcpu=cortex-m0plus -mthumb -DF_CPU={build.f_cpu} {build.extra_flags} -I{build.core.path}/api -I{build.core.path}/samd -I{build.variant.path} -I{build.system.path} "{source_file}" -o "{object_file}"
+recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -mcpu=cortex-m0plus -mthumb -DF_CPU={build.f_cpu} {build.extra_flags} -I{build.core.path}/api -I{build.core.path}/samd -I{build.variant.path} -I{build.system.path} "{source_file}" -o "{object_file}"
+recipe.S.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.S.flags} -mcpu=cortex-m0plus -mthumb -DF_CPU={build.f_cpu} {build.extra_flags} -I{build.core.path}/api -I{build.core.path}/samd -I{build.variant.path} -I{build.system.path} "{source_file}" -o "{object_file}"
+
+# Linker pattern
+recipe.c.combine.pattern="{compiler.path}{compiler.c.cmd}" -Os -Wl,--gc-sections -mcpu=cortex-m0plus -mthumb -T"{build.variant.path}/linker_scripts/gcc/flash.ld" -Wl,-Map,"{build.path}/{build.project_name}.map" -o "{build.path}/{build.project_name}.elf" {object_files} "{build.core.path}/newlib/libc.a" -L{build.variant.path}/linker_scripts/gcc -lm
+
+# Binary conversion
+recipe.objcopy.bin.pattern="{compiler.path}{compiler.elf2bin.cmd}" {compiler.elf2bin.flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.bin"
+
+# Upload tool
+tools.bossac.cmd.path={runtime.tools.bossac.path}/bossac
+tools.bossac.upload.pattern="{path}/{cmd}" --port={serial.port} -U -i -e -w -v -b "{build.path}/{build.project_name}.bin" -R
+
+# Build properties
+build.mcu=cortex-m0plus
+build.f_cpu=48000000L
+build.core=custom
+build.extra_flags=
+
+# Core and variant paths
+build.core.path={runtime.platform.path}/cores/arduino
+build.variant.path={runtime.platform.path}/variants/{build.variant}
+
+# Board specific options
+build.variant=mkrml
