@@ -14,10 +14,10 @@
           "architecture": "samd",
           "version": "1.0.0",
           "category": "Contributed",
-          "url": "https://raw.githubusercontent.com/ivokrajinovic/repo/branch/hardware/microlink/mkrml-1.0.0.zip",
+          "url": "https://github.com/ivokrajinovic/repo/blob/68d3eb523f8ece608bc7259739b17e42ba5dd048/hardware/mkrml-1.0.0.zip",
           "archiveFileName": "mkrml-1.0.0.zip",
-          "checksum": "SHA-256:c60c3a49c3d269c62ecf9babaabb7e2afaf7015fd3fcda18c2b31c11cb26b4dd",
-          "size": "2633063",
+          "checksum": "SHA-256:7331e1e59ec350fb1de6c064455949dd34f0b2afcb9ae01c7b35da9eb0e58025",
+          "size": "1684231",
           "boards": [
             {
               "name": "MKRML"
